@@ -1656,10 +1656,10 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         var fileFormat    = imageNode.getAttribute( "Format" ),
             sizeNode      = imageNode.getElementsByTagName( "Size" )[ 0 ],
             dispRectNodes = imageNode.getElementsByTagName( "DisplayRect" ),
-            width         = parseInt( sizeNode.getAttribute( "Width" ) ),
-            height        = parseInt( sizeNode.getAttribute( "Height" ) ),
-            tileSize      = parseInt( imageNode.getAttribute( "TileSize" ) ),
-            tileOverlap   = parseInt( imageNode.getAttribute( "Overlap" ) ),
+            width         = parseInt( sizeNode.getAttribute( "Width" ), 10 ),
+            height        = parseInt( sizeNode.getAttribute( "Height" ), 10 ),
+            tileSize      = parseInt( imageNode.getAttribute( "TileSize" ), 10 ),
+            tileOverlap   = parseInt( imageNode.getAttribute( "Overlap" ), 10 ),
             dispRects     = [],
             dispRectNode,
             rectNode,
@@ -1676,12 +1676,12 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
             rectNode     = dispRectNode.getElementsByTagName( "Rect" )[ 0 ];
 
             dispRects.push( new $.DisplayRect(
-                parseInt( rectNode.getAttribute( "X" ) ),
-                parseInt( rectNode.getAttribute( "Y" ) ),
-                parseInt( rectNode.getAttribute( "Width" ) ),
-                parseInt( rectNode.getAttribute( "Height" ) ),
+                parseInt( rectNode.getAttribute( "X" ), 10 ),
+                parseInt( rectNode.getAttribute( "Y" ), 10 ),
+                parseInt( rectNode.getAttribute( "Width" ), 10 ),
+                parseInt( rectNode.getAttribute( "Height" ), 10 ),
                 0,  // ignore MinLevel attribute, bug in Deep Zoom Composer
-                parseInt( dispRectNode.getAttribute( "MaxLevel" ) )
+                parseInt( dispRectNode.getAttribute( "MaxLevel" ), 10 )
             ));
         }
         return new $.DziTileSource(
@@ -1706,10 +1706,10 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         var fileFormat    = imageData.Format,
             sizeData      = imageData.Size,
             dispRectData  = imageData.DisplayRect || [],
-            width         = parseInt( sizeData.Width ),
-            height        = parseInt( sizeData.Height ),
-            tileSize      = parseInt( imageData.TileSize ),
-            tileOverlap   = parseInt( imageData.Overlap ),
+            width         = parseInt( sizeData.Width, 10 ),
+            height        = parseInt( sizeData.Height, 10 ),
+            tileSize      = parseInt( imageData.TileSize, 10 ),
+            tileOverlap   = parseInt( imageData.Overlap, 10 ),
             dispRects     = [],
             rectData,
             i;
@@ -1724,12 +1724,12 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
             rectData     = dispRectData[ i ].Rect;
 
             dispRects.push( new $.DisplayRect(
-                parseInt( rectData.X ),
-                parseInt( rectData.Y ),
-                parseInt( rectData.Width ),
-                parseInt( rectData.Height ),
+                parseInt( rectData.X, 10 ),
+                parseInt( rectData.Y, 10 ),
+                parseInt( rectData.Width, 10 ),
+                parseInt( rectData.Height, 10 ),
                 0,  // ignore MinLevel attribute, bug in Deep Zoom Composer
-                parseInt( rectData.MaxLevel )
+                parseInt( rectData.MaxLevel, 10 )
             ));
         }
         return new $.DziTileSource(
