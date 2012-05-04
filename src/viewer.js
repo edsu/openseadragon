@@ -394,7 +394,7 @@ $.extend( $.Viewer.prototype, $.EventHandler.prototype, $.ControlDock.prototype,
 
             overlay = this.overlayControls[ i ];
 
-            if ( overlay.point != null ) {
+            if ( overlay.point !== null ) {
 
                 this.drawer.addOverlay(
                     overlay.id,
