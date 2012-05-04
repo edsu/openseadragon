@@ -6,7 +6,7 @@
  * The LegacyTileSource allows simple, traditional image pyramids to be loaded
  * into an OpenSeadragon Viewer.  Basically, this translates to the historically
  * common practice of starting with a 'master' image, maybe a tiff for example,
- * and generating a set of 'service' images like one or more thumbnails, a medium 
+ * and generating a set of 'service' images like one or more thumbnails, a medium
  * resolution image and a high resolution image in standard web formats like
  * png or jpg.
  * @class
@@ -22,14 +22,14 @@
  * @property {Number} minLevel
  * @property {Number} maxLevel
  * @property {Array} files
- */ 
+ */
 $.LegacyTileSource = function( files ) {
     var width   = files[ files.length - 1 ].width,
         height  = files[ files.length - 1 ].height;
 
-    $.TileSource.apply( this, [ 
-        width,      
-        height, 
+    $.TileSource.apply( this, [
+        width,
+        height,
         Math.max( height, width ),  //tileSize
         0,                          //overlap
         0,                          //mimLevel
@@ -40,7 +40,7 @@ $.LegacyTileSource = function( files ) {
 };
 
 $.LegacyTileSource.prototype = {
-    
+
     /**
      * @function
      * @param {Number} level
@@ -48,10 +48,10 @@ $.LegacyTileSource.prototype = {
     getLevelScale: function( level ) {
         var levelScale = NaN;
         if (  level >= this.minLevel && level <= this.maxLevel ){
-            levelScale = 
-                this.files[ level ].width / 
+            levelScale =
+                this.files[ level ].width /
                 this.files[ this.maxLevel ].width;
-        } 
+        }
         return levelScale;
     },
 
@@ -101,9 +101,9 @@ $.LegacyTileSource.prototype = {
             py = ( y === 0 ) ? 0 : this.files[ level ].height,
             sx = this.files[ level ].width,
             sy = this.files[ level ].height,
-            scale = 1.0 / ( this.width >= this.height  ? 
+            scale = 1.0 / ( this.width >= this.height  ?
                 dimensionsScaled.y :
-                dimensionsScaled.x 
+                dimensionsScaled.x
             );
 
         sx = Math.min( sx, dimensionsScaled.x - px );
@@ -114,7 +114,7 @@ $.LegacyTileSource.prototype = {
 
     /**
      * This method is not implemented by this class other than to throw an Error
-     * announcing you have to implement it.  Because of the variety of tile 
+     * announcing you have to implement it.  Because of the variety of tile
      * server technologies, and various specifications for building image
      * pyramids, this method is here to allow easy integration.
      * @function
@@ -125,7 +125,7 @@ $.LegacyTileSource.prototype = {
      */
     getTileUrl: function( level, x, y ) {
         var url = null;
-        if( level >= this.minLevel && level <= this.maxLevel ){   
+        if( level >= this.minLevel && level <= this.maxLevel ){
             url = this.files[ level ].url;
         }
         return url;
@@ -139,11 +139,11 @@ $.LegacyTileSource.prototype = {
      */
     tileExists: function( level, x, y ) {
         var numTiles = this.getNumTiles( level );
-        return  level >= this.minLevel && 
+        return  level >= this.minLevel &&
                 level <= this.maxLevel &&
-                x >= 0 && 
-                y >= 0 && 
-                x < numTiles.x && 
+                x >= 0 &&
+                y >= 0 &&
+                x < numTiles.x &&
                 y < numTiles.y;
     }
 };

@@ -16,7 +16,7 @@
  * @property {Number} tileOverlap
  * @property {Number} minLevel
  * @property {Number} maxLevel
- */ 
+ */
 $.TileSource = function( width, height, tileSize, tileOverlap, minLevel, maxLevel ) {
     this.aspectRatio = width / height;
     this.dimensions  = new $.Point( width, height );
@@ -24,14 +24,14 @@ $.TileSource = function( width, height, tileSize, tileOverlap, minLevel, maxLeve
     this.tileOverlap = tileOverlap ? tileOverlap : 0;
     this.minLevel    = minLevel ? minLevel : 0;
     this.maxLevel    = maxLevel ? maxLevel :
-        Math.ceil( 
-            Math.log( Math.max( width, height ) ) / 
-            Math.log( 2 ) 
+        Math.ceil(
+            Math.log( Math.max( width, height ) ) /
+            Math.log( 2 )
         );
 };
 
 $.TileSource.prototype = {
-    
+
     /**
      * @function
      * @param {Number} level
@@ -99,7 +99,7 @@ $.TileSource.prototype = {
 
     /**
      * This method is not implemented by this class other than to throw an Error
-     * announcing you have to implement it.  Because of the variety of tile 
+     * announcing you have to implement it.  Because of the variety of tile
      * server technologies, and various specifications for building image
      * pyramids, this method is here to allow easy integration.
      * @function
@@ -120,11 +120,11 @@ $.TileSource.prototype = {
      */
     tileExists: function( level, x, y ) {
         var numTiles = this.getNumTiles( level );
-        return  level >= this.minLevel && 
+        return  level >= this.minLevel &&
                 level <= this.maxLevel &&
-                x >= 0 && 
-                y >= 0 && 
-                x < numTiles.x && 
+                x >= 0 &&
+                y >= 0 &&
+                x < numTiles.x &&
                 y < numTiles.y;
     }
 };

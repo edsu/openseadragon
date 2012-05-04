@@ -2,13 +2,13 @@
 (function( $ ){
 
 /**
- * A Point is really used as a 2-dimensional vector, equally useful for 
+ * A Point is really used as a 2-dimensional vector, equally useful for
  * representing a point on a plane, or the height and width of a plane
  * not requiring any other frame of reference.
  * @class
  * @param {Number} [x] The vector component 'x'. Defaults to the origin at 0.
  * @param {Number} [y] The vector component 'y'. Defaults to the origin at 0.
- * @property {Number} [x] The vector component 'x'. 
+ * @property {Number} [x] The vector component 'x'.
  * @property {Number} [y] The vector component 'y'.
  */
 $.Point = function( x, y ) {
@@ -27,7 +27,7 @@ $.Point.prototype = {
      */
     plus: function( point ) {
         return new $.Point(
-            this.x + point.x, 
+            this.x + point.x,
             this.y + point.y
         );
     },
@@ -41,7 +41,7 @@ $.Point.prototype = {
      */
     minus: function( point ) {
         return new $.Point(
-            this.x - point.x, 
+            this.x - point.x,
             this.y - point.y
         );
     },
@@ -55,7 +55,7 @@ $.Point.prototype = {
      */
     times: function( factor ) {
         return new $.Point(
-            this.x * factor, 
+            this.x * factor,
             this.y * factor
         );
     },
@@ -69,7 +69,7 @@ $.Point.prototype = {
      */
     divide: function( factor ) {
         return new $.Point(
-            this.x / factor, 
+            this.x / factor,
             this.y / factor
         );
     },
@@ -118,12 +118,12 @@ $.Point.prototype = {
      *  vector components
      */
     equals: function( point ) {
-        return ( 
-            point instanceof $.Point 
-        ) && ( 
-            this.x === point.x 
-        ) && ( 
-            this.y === point.y 
+        return (
+            point instanceof $.Point
+        ) && (
+            this.x === point.x
+        ) && (
+            this.y === point.y
         );
     },
 

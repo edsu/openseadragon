@@ -2,7 +2,7 @@
 
     //id hash for private properties;
     var THIS = {};
-    
+
     /**
      * @class
      */
@@ -10,7 +10,7 @@
         var layouts = [ 'topleft', 'topright', 'bottomright', 'bottomleft'],
             layout,
             i;
-        
+
         $.extend( true, this, {
             id: 'controldock-'+(+new Date())+'-'+Math.floor(Math.random()*1000000),
             container: $.makeNeutralElement('form'),
@@ -19,8 +19,8 @@
 
         if( this.element ){
             this.element = $.getElement( this.element );
-            this.element.appendChild( this.container );   
-            this.element.style.position = 'relative'; 
+            this.element.appendChild( this.container );
+            this.element.style.position = 'relative';
             this.container.style.width = '100%';
             this.container.style.height = '100%';
         }
@@ -109,7 +109,7 @@
         removeControl: function ( element ) {
             var element  = $.getElement( element ),
                 i        = getControlIndex( this, element );
-            
+
             if ( i >= 0 ) {
                 this.controls[ i ].destroy();
                 this.controls.splice( i, 1 );
@@ -126,7 +126,7 @@
             while ( this.controls.length > 0 ) {
                 this.controls.pop().destroy();
             }
-            
+
             return this;
         },
 
@@ -137,7 +137,7 @@
          */
         areControlsEnabled: function () {
             var i;
-            
+
             for ( i = this.controls.length - 1; i >= 0; i-- ) {
                 if ( this.controls[ i ].isVisible() ) {
                     return true;

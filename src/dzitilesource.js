@@ -1,6 +1,6 @@
 
 (function( $ ){
-    
+
 /**
  * @class
  * @extends OpenSeadragon.TileSource
@@ -14,7 +14,7 @@
  * @property {String} tilesUrl
  * @property {String} fileFormat
  * @property {OpenSeadragon.DisplayRect[]} displayRects
- */ 
+ */
 $.DziTileSource = function( width, height, tileSize, tileOverlap, tilesUrl, fileFormat, displayRects ) {
     var i,
         rect,
@@ -26,7 +26,7 @@ $.DziTileSource = function( width, height, tileSize, tileOverlap, tilesUrl, file
     this.tilesUrl     = tilesUrl;
     this.fileFormat   = fileFormat;
     this.displayRects = displayRects;
-    
+
     if ( this.displayRects ) {
         for ( i = this.displayRects.length - 1; i >= 0; i-- ) {
             rect = this.displayRects[ i ];
@@ -42,7 +42,7 @@ $.DziTileSource = function( width, height, tileSize, tileOverlap, tilesUrl, file
 };
 
 $.extend( $.DziTileSource.prototype, $.TileSource.prototype, {
-    
+
     /**
      * @function
      * @name OpenSeadragon.DziTileSource.prototype.getTileUrl

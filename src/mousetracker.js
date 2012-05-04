@@ -1,35 +1,35 @@
 
 (function( $ ){
-        
+
         // is any button currently being pressed while mouse events occur
     var IS_BUTTON_DOWN  = false,
         // is any tracker currently capturing?
         IS_CAPTURING    = false,
         // dictionary from hash to MouseTracker
-        ACTIVE          = {},   
+        ACTIVE          = {},
         // list of trackers interested in capture
         CAPTURING       = [],
         // dictionary from hash to private properties
-        THIS            = {};   
+        THIS            = {};
 
     /**
-     * The MouseTracker allows other classes to set handlers for common mouse 
+     * The MouseTracker allows other classes to set handlers for common mouse
      * events on a specific element like, 'enter', 'exit', 'press', 'release',
      * 'scroll', 'click', and 'drag'.
      * @class
-     * @param {Object} options 
+     * @param {Object} options
      *      Allows configurable properties to be entirely specified by passing
-     *      an options object to the constructor.  The constructor also supports 
+     *      an options object to the constructor.  The constructor also supports
      *      the original positional arguments 'elements', 'clickTimeThreshold',
      *      and 'clickDistThreshold' in that order.
-     * @param {Element|String} options.element 
-     *      A reference to an element or an element id for which the mouse 
+     * @param {Element|String} options.element
+     *      A reference to an element or an element id for which the mouse
      *      events will be monitored.
-     * @param {Number} options.clickTimeThreshold 
-     *      The number of milliseconds within which mutliple mouse clicks 
+     * @param {Number} options.clickTimeThreshold
+     *      The number of milliseconds within which mutliple mouse clicks
      *      will be treated as a single event.
-     * @param {Number} options.clickDistThreshold 
-     *      The distance between mouse click within multiple mouse clicks 
+     * @param {Number} options.clickDistThreshold
+     *      The distance between mouse click within multiple mouse clicks
      *      will be treated as a single event.
      * @param {Function} options.enterHandler
      *      An optional handler for mouse enter.
@@ -45,15 +45,15 @@
      *      An optional handler for mouse click.
      * @param {Function} options.dragHandler
      *      An optional handler for mouse drag.
-     * @property {Number} hash 
+     * @property {Number} hash
      *      An unique hash for this tracker.
-     * @property {Element} element 
+     * @property {Element} element
      *      The element for which mouse event are being monitored.
      * @property {Number} clickTimeThreshold
-     *      The number of milliseconds within which mutliple mouse clicks 
+     *      The number of milliseconds within which mutliple mouse clicks
      *      will be treated as a single event.
      * @property {Number} clickDistThreshold
-     *      The distance between mouse click within multiple mouse clicks 
+     *      The distance between mouse click within multiple mouse clicks
      *      will be treated as a single event.
      */
     $.MouseTracker = function ( options ) {
@@ -68,7 +68,7 @@
             };
         }
 
-        this.hash               = Math.random(); 
+        this.hash               = Math.random();
         this.element            = $.getElement( options.element );
         this.clickTimeThreshold = options.clickTimeThreshold;
         this.clickDistThreshold = options.clickDistThreshold;
@@ -95,15 +95,15 @@
          * @property {Boolean} capturing
          *      Are we curruently capturing mouse events.
          * @property {Boolean} buttonDown
-         *      True if the left mouse button is currently being pressed and was 
+         *      True if the left mouse button is currently being pressed and was
          *      initiated inside the tracked element, otherwise false.
          * @property {Boolean} insideElement
          *      Are we currently inside the screen area of the tracked element.
-         * @property {OpenSeadragon.Point} lastPoint 
+         * @property {OpenSeadragon.Point} lastPoint
          *      Position of last mouse down/move
-         * @property {Number} lastMouseDownTime 
+         * @property {Number} lastMouseDownTime
          *      Time of last mouse down.
-         * @property {OpenSeadragon.Point} lastMouseDownPoint 
+         * @property {OpenSeadragon.Point} lastMouseDownPoint
          *      Position of last mouse down
          */
         THIS[ this.hash ] = {
@@ -163,17 +163,17 @@
             //chain
             return this;
         },
-        
+
         /**
          * Implement or assign implmentation to these handlers during or after
          * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
          * @param {Boolean} buttonDown
-         *      True if the left mouse button is currently being pressed and was 
+         *      True if the left mouse button is currently being pressed and was
          *      initiated inside the tracked element, otherwise false.
          * @param {Boolean} buttonDownAny
          *      Was the button down anywhere in the screen during the event.
@@ -184,12 +184,12 @@
          * Implement or assign implmentation to these handlers during or after
          * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
          * @param {Boolean} buttonDown
-         *      True if the left mouse button is currently being pressed and was 
+         *      True if the left mouse button is currently being pressed and was
          *      initiated inside the tracked element, otherwise false.
          * @param {Boolean} buttonDownAny
          *      Was the button down anywhere in the screen during the event.
@@ -200,7 +200,7 @@
          * Implement or assign implmentation to these handlers during or after
          * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
@@ -211,12 +211,12 @@
          * Implement or assign implmentation to these handlers during or after
          * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
          * @param {Boolean} buttonDown
-         *      True if the left mouse button is currently being pressed and was 
+         *      True if the left mouse button is currently being pressed and was
          *      initiated inside the tracked element, otherwise false.
          * @param {Boolean} insideElementRelease
          *      Was the mouse still inside the tracked element when the button
@@ -228,7 +228,7 @@
          * Implement or assign implmentation to these handlers during or after
          * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
@@ -241,14 +241,14 @@
 
         /**
          * Implement or assign implmentation to these handlers during or after
-         * calling the constructor. 
+         * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
          * @param {Boolean} quick
-         *      True only if the clickDistThreshold and clickDeltaThreshold are 
+         *      True only if the clickDistThreshold and clickDeltaThreshold are
          *      both pased. Useful for ignoring events.
          * @param {Boolean} shift
          *      Was the shift key being pressed during this event?
@@ -257,9 +257,9 @@
 
         /**
          * Implement or assign implmentation to these handlers during or after
-         * calling the constructor. 
+         * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {OpenSeadragon.Point} position
          *      The poistion of the event on the screen.
@@ -273,9 +273,9 @@
 
         /**
          * Implement or assign implmentation to these handlers during or after
-         * calling the constructor. 
+         * calling the constructor.
          * @function
-         * @param {OpenSeadragon.MouseTracker} tracker  
+         * @param {OpenSeadragon.MouseTracker} tracker
          *      A reference to the tracker instance.
          * @param {Number} keyCode
          *      The key code that was pressed.
@@ -296,24 +296,24 @@
      */
     function startTracking( tracker ) {
         var events = [
-                "mouseover", "mouseout", "mousedown", "mouseup", 
+                "mouseover", "mouseout", "mousedown", "mouseup",
                 "click",
-                "DOMMouseScroll", "mousewheel", 
+                "DOMMouseScroll", "mousewheel",
                 "touchstart", "touchmove", "touchend",
                 "keypress",
                 "focus", "blur"
-            ], 
+            ],
             delegate = THIS[ tracker.hash ],
-            event, 
+            event,
             i;
 
         if ( !delegate.tracking ) {
             for( i = 0; i < events.length; i++ ){
                 event = events[ i ];
-                $.addEvent( 
-                    tracker.element, 
-                    event, 
-                    delegate[ event ], 
+                $.addEvent(
+                    tracker.element,
+                    event,
+                    delegate[ event ],
                     false
                 );
             }
@@ -329,24 +329,24 @@
      */
     function stopTracking( tracker ) {
         var events = [
-                "mouseover", "mouseout", "mousedown", "mouseup", 
+                "mouseover", "mouseout", "mousedown", "mouseup",
                 "click",
-                "DOMMouseScroll", "mousewheel", 
+                "DOMMouseScroll", "mousewheel",
                 "touchstart", "touchmove", "touchend",
                 "keypress",
                 "focus", "blur"
             ],
             delegate = THIS[ tracker.hash ],
-            event, 
+            event,
             i;
-        
+
         if ( delegate.tracking ) {
             for( i = 0; i < events.length; i++ ){
                 event = events[ i ];
-                $.removeEvent( 
-                    tracker.element, 
-                    event, 
-                    delegate[ event ], 
+                $.removeEvent(
+                    tracker.element,
+                    event,
+                    delegate[ event ],
                     false
                 );
             }
@@ -375,43 +375,43 @@
         if ( !delegate.capturing ) {
 
             if ( $.Browser.vendor == $.BROWSERS.IE && $.Browser.version < 9 ) {
-                $.removeEvent( 
-                    tracker.element, 
-                    "mouseup", 
-                    delegate[ "mouseup" ], 
-                    false 
+                $.removeEvent(
+                    tracker.element,
+                    "mouseup",
+                    delegate[ "mouseup" ],
+                    false
                 );
-                $.addEvent( 
-                    tracker.element, 
-                    "mouseup", 
-                    delegate[ "mouseupie" ], 
-                    true 
+                $.addEvent(
+                    tracker.element,
+                    "mouseup",
+                    delegate[ "mouseupie" ],
+                    true
                 );
-                $.addEvent( 
-                    tracker.element, 
-                    "mousemove", 
-                    delegate[ "mousemoveie" ], 
-                    true 
+                $.addEvent(
+                    tracker.element,
+                    "mousemove",
+                    delegate[ "mousemoveie" ],
+                    true
                 );
             } else {
-                $.addEvent( 
-                    window, 
-                    "mouseup", 
-                    delegate[ "mouseupwindow" ], 
-                    true 
+                $.addEvent(
+                    window,
+                    "mouseup",
+                    delegate[ "mouseupwindow" ],
+                    true
                 );
-                $.addEvent( 
-                    window, 
-                    "mousemove", 
-                    delegate[ "mousemove" ], 
-                    true 
+                $.addEvent(
+                    window,
+                    "mousemove",
+                    delegate[ "mousemove" ],
+                    true
                 );
             }
             delegate.capturing = true;
         }
     };
 
-        
+
     /**
      * Stop capturing mouse events on this element.
      * @private
@@ -422,36 +422,36 @@
         if ( delegate.capturing ) {
 
             if ( $.Browser.vendor == $.BROWSERS.IE && $.Browser.version < 9 ) {
-                $.removeEvent( 
-                    tracker.element, 
-                    "mousemove", 
-                    delegate[ "mousemoveie" ], 
-                    true 
+                $.removeEvent(
+                    tracker.element,
+                    "mousemove",
+                    delegate[ "mousemoveie" ],
+                    true
                 );
-                $.removeEvent( 
-                    tracker.element, 
-                    "mouseup", 
-                    delegate[ "mouseupie" ], 
-                    true 
+                $.removeEvent(
+                    tracker.element,
+                    "mouseup",
+                    delegate[ "mouseupie" ],
+                    true
                 );
-                $.addEvent( 
-                    tracker.element, 
-                    "mouseup", 
-                    delegate[ "mouseup" ], 
-                    false 
+                $.addEvent(
+                    tracker.element,
+                    "mouseup",
+                    delegate[ "mouseup" ],
+                    false
                 );
             } else {
-                $.removeEvent( 
-                    window, 
-                    "mousemove", 
-                    delegate[ "mousemove" ], 
-                    true 
+                $.removeEvent(
+                    window,
+                    "mousemove",
+                    delegate[ "mousemove" ],
+                    true
                 );
-                $.removeEvent( 
-                    window, 
-                    "mouseup", 
-                    delegate[ "mouseupwindow" ], 
-                    true 
+                $.removeEvent(
+                    window,
+                    "mouseup",
+                    delegate[ "mouseupwindow" ],
+                    true
                 );
             }
             delegate.capturing = false;
@@ -481,8 +481,8 @@
         //console.log( "focus %s", event );
         var propagate;
         if ( tracker.focusHandler ) {
-            propagate = tracker.focusHandler( 
-                tracker, 
+            propagate = tracker.focusHandler(
+                tracker,
                 event
             );
             if( propagate === false ){
@@ -500,8 +500,8 @@
         //console.log( "blur %s", event );
         var propagate;
         if ( tracker.blurHandler ) {
-            propagate = tracker.blurHandler( 
-                tracker, 
+            propagate = tracker.blurHandler(
+                tracker,
                 event
             );
             if( propagate === false ){
@@ -510,7 +510,7 @@
         }
     };
 
-    
+
     /**
      * @private
      * @inner
@@ -519,8 +519,8 @@
         //console.log( "keypress %s %s %s %s %s", event.keyCode, event.charCode, event.ctrlKey, event.shiftKey, event.altKey );
         var propagate;
         if ( tracker.keyHandler ) {
-            propagate = tracker.keyHandler( 
-                tracker, 
+            propagate = tracker.keyHandler(
+                tracker,
                 event.keyCode ? event.keyCode : event.charCode,
                 event.shiftKey
             );
@@ -541,23 +541,23 @@
             delegate = THIS[ tracker.hash ],
             propagate;
 
-        if ( $.Browser.vendor == $.BROWSERS.IE && 
-             $.Browser.version < 9 && 
-             delegate.capturing && 
+        if ( $.Browser.vendor == $.BROWSERS.IE &&
+             $.Browser.version < 9 &&
+             delegate.capturing &&
              !isChild( event.srcElement, tracker.element ) ) {
 
             triggerOthers( tracker, onMouseOver, event );
 
         }
 
-        var to = event.target ? 
-                event.target : 
+        var to = event.target ?
+                event.target :
                 event.srcElement,
-            from = event.relatedTarget ? 
-                event.relatedTarget : 
+            from = event.relatedTarget ?
+                event.relatedTarget :
                 event.fromElement;
 
-        if ( !isChild( tracker.element, to ) || 
+        if ( !isChild( tracker.element, to ) ||
               isChild( tracker.element, from ) ) {
             return;
         }
@@ -566,9 +566,9 @@
 
         if ( tracker.enterHandler ) {
             propagate = tracker.enterHandler(
-                tracker, 
+                tracker,
                 getMouseRelative( event, tracker.element ),
-                delegate.buttonDown, 
+                delegate.buttonDown,
                 IS_BUTTON_DOWN
             );
             if( propagate === false ){
@@ -587,23 +587,23 @@
             delegate = THIS[ tracker.hash ],
             propagate;
 
-        if ( $.Browser.vendor == $.BROWSERS.IE && 
+        if ( $.Browser.vendor == $.BROWSERS.IE &&
              $.Browser.version < 9 &&
-             delegate.capturing && 
+             delegate.capturing &&
              !isChild( event.srcElement, tracker.element ) ) {
 
             triggerOthers( tracker, onMouseOut, event );
 
         }
 
-        var from = event.target ? 
-                event.target : 
+        var from = event.target ?
+                event.target :
                 event.srcElement,
-            to = event.relatedTarget ? 
-                event.relatedTarget : 
+            to = event.relatedTarget ?
+                event.relatedTarget :
                 event.toElement;
 
-        if ( !isChild( tracker.element, from ) || 
+        if ( !isChild( tracker.element, from ) ||
               isChild( tracker.element, to ) ) {
             return;
         }
@@ -611,10 +611,10 @@
         delegate.insideElement = false;
 
         if ( tracker.exitHandler ) {
-            propagate = tracker.exitHandler( 
-                tracker, 
+            propagate = tracker.exitHandler(
+                tracker,
                 getMouseRelative( event, tracker.element ),
-                delegate.buttonDown, 
+                delegate.buttonDown,
                 IS_BUTTON_DOWN
             );
 
@@ -645,8 +645,8 @@
         delegate.lastMouseDownTime = +new Date();
 
         if ( tracker.pressHandler ) {
-            propagate = tracker.pressHandler( 
-                tracker, 
+            propagate = tracker.pressHandler(
+                tracker,
                 getMouseRelative( event, tracker.element )
             );
             if( propagate === false ){
@@ -658,15 +658,15 @@
             $.cancelEvent( event );
         }
 
-        if ( !( $.Browser.vendor == $.BROWSERS.IE && $.Browser.version < 9 ) || 
+        if ( !( $.Browser.vendor == $.BROWSERS.IE && $.Browser.version < 9 ) ||
              !IS_CAPTURING ) {
             captureMouse( tracker );
             IS_CAPTURING = true;
             // reset to empty & add us
-            CAPTURING = [ tracker ];     
+            CAPTURING = [ tracker ];
         } else if ( $.Browser.vendor == $.BROWSERS.IE  && $.Browser.version < 9 ) {
             // add us to the list
-            CAPTURING.push( tracker );   
+            CAPTURING.push( tracker );
         }
     };
 
@@ -679,19 +679,19 @@
             touchB;
 
         if( event.touches.length == 1 &&
-            event.targetTouches.length == 1 && 
+            event.targetTouches.length == 1 &&
             event.changedTouches.length == 1 ){
-            
-            THIS[ tracker.hash ].lastTouch = event.touches[ 0 ];  
+
+            THIS[ tracker.hash ].lastTouch = event.touches[ 0 ];
             onMouseOver( tracker, event.changedTouches[ 0 ] );
             onMouseDown( tracker, event.touches[ 0 ] );
         }
 
         if( event.touches.length == 2 ){
-            
+
             touchA = getMouseAbsolute( event.touches[ 0 ] );
             touchB = getMouseAbsolute( event.touches[ 1 ] );
-            THIS[ tracker.hash ].lastPinchDelta = 
+            THIS[ tracker.hash ].lastPinchDelta =
                 Math.abs( touchA.x - touchB.x ) +
                 Math.abs( touchA.y - touchB.y );
             //$.console.debug("pinch start : "+THIS[ tracker.hash ].lastPinchDelta);
@@ -722,9 +722,9 @@
 
         if ( tracker.releaseHandler ) {
             propagate = tracker.releaseHandler(
-                tracker, 
+                tracker,
                 getMouseRelative( event, tracker.element ),
-                insideElementPress, 
+                insideElementPress,
                 insideElementRelease
             );
             if( propagate === false ){
@@ -745,7 +745,7 @@
     function onTouchEnd( tracker, event ) {
 
         if( event.touches.length == 0 &&
-            event.targetTouches.length == 0 && 
+            event.targetTouches.length == 0 &&
             event.changedTouches.length == 1 ){
 
             THIS[ tracker.hash ].lastTouch = null;
@@ -832,7 +832,7 @@
     function onMouseWheelSpin( tracker, event ) {
         var nDelta = 0,
             propagate;
-        
+
         if ( !event ) { // For IE, access the global (window) event object
             event = window.event;
         }
@@ -852,9 +852,9 @@
 
         if ( tracker.scrollHandler ) {
             propagate = tracker.scrollHandler(
-                tracker, 
-                getMouseRelative( event, tracker.element ), 
-                nDelta, 
+                tracker,
+                getMouseRelative( event, tracker.element ),
+                nDelta,
                 event.shiftKey
             );
             if( propagate === false ){
@@ -880,14 +880,14 @@
         var time     = +new Date() - delegate.lastMouseDownTime,
             point    = getMouseAbsolute( event ),
             distance = delegate.lastMouseDownPoint.distanceTo( point ),
-            quick    = time     <= tracker.clickTimeThreshold && 
+            quick    = time     <= tracker.clickTimeThreshold &&
                        distance <= tracker.clickDistThreshold;
 
         if ( tracker.clickHandler ) {
             propagate = tracker.clickHandler(
-                tracker, 
+                tracker,
                 getMouseRelative( event, tracker.element ),
-                quick, 
+                quick,
                 event.shiftKey
             );
             if( propagate === false ){
@@ -912,9 +912,9 @@
 
         if ( tracker.dragHandler ) {
             propagate = tracker.dragHandler(
-                tracker, 
+                tracker,
                 getMouseRelative( event, tracker.element ),
-                delta, 
+                delta,
                 event.shiftKey
             );
             if( propagate === false ){
@@ -934,8 +934,8 @@
             pinchDelta;
 
         if( event.touches.length === 1 &&
-            event.targetTouches.length === 1 && 
-            event.changedTouches.length === 1 && 
+            event.targetTouches.length === 1 &&
+            event.changedTouches.length === 1 &&
             THIS[ tracker.hash ].lastTouch === event.touches[ 0 ]){
 
             onMouseMove( tracker, event.touches[ 0 ] );
@@ -947,7 +947,7 @@
             pinchDelta =
                 Math.abs( touchA.x - touchB.x ) +
                 Math.abs( touchA.y - touchB.y );
-            
+
             //TODO: make the 75px pinch threshold configurable
             if( Math.abs( THIS[ tracker.hash ].lastPinchDelta - pinchDelta ) > 75 ){
                 //$.console.debug( "pinch delta : " + pinchDelta + " | previous : " + THIS[ tracker.hash ].lastPinchDelta);
@@ -956,8 +956,8 @@
                     shift: false,
                     pageX: ( event.touches[ 0 ].pageX + event.touches[ 1 ].pageX ) / 2,
                     pageY: ( event.touches[ 0 ].pageY + event.touches[ 1 ].pageY ) / 2,
-                    detail:( 
-                        THIS[ tracker.hash ].lastPinchDelta > pinchDelta 
+                    detail:(
+                        THIS[ tracker.hash ].lastPinchDelta > pinchDelta
                     ) ? 1 : -1
                 });
 
@@ -1047,5 +1047,5 @@
             $.addEvent( window, "mouseup", onGlobalMouseUp, true );
         }
     })();
-    
+
 }( OpenSeadragon ));

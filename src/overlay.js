@@ -20,31 +20,31 @@
     };
 
     /**
-     * An Overlay provides a 
+     * An Overlay provides a
      * @class
      */
     $.Overlay = function( element, location, placement ) {
         this.element    = element;
         this.scales     = location instanceof $.Rect;
         this.bounds     = new $.Rect(
-            location.x, 
+            location.x,
             location.y,
-            location.width, 
+            location.width,
             location.height
         );
         this.position   = new $.Point(
-            location.x, 
+            location.x,
             location.y
         );
         this.size       = new $.Point(
-            location.width, 
+            location.width,
             location.height
         );
         this.style      = element.style;
         // rects are always top-left
-        this.placement  = location instanceof $.Point ? 
-            placement : 
-            $.OverlayPlacement.TOP_LEFT;    
+        this.placement  = location instanceof $.Point ?
+            placement :
+            $.OverlayPlacement.TOP_LEFT;
     };
 
     $.Overlay.prototype = {
@@ -155,16 +155,16 @@
          */
         update: function( location, placement ) {
             this.scales     = location instanceof $.Rect;
-            this.bounds     = new $.Rect( 
-                location.x, 
-                location.y, 
-                location.width, 
+            this.bounds     = new $.Rect(
+                location.x,
+                location.y,
+                location.width,
                 location.height
             );
             // rects are always top-left
             this.placement  = location instanceof $.Point ?
-                placement : 
-                $.OverlayPlacement.TOP_LEFT;    
+                placement :
+                $.OverlayPlacement.TOP_LEFT;
         }
 
     };

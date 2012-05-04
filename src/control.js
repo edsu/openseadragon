@@ -1,6 +1,6 @@
 
 (function( $ ){
-    
+
 /**
  * An enumeration of supported locations where controls can be anchored,
  * including NONE, TOP_LEFT, TOP_RIGHT, BOTTOM_RIGHT, and BOTTOM_LEFT.
@@ -16,21 +16,21 @@ $.ControlAnchor = {
 };
 
 /**
- * A Control represents any interface element which is meant to allow the user 
- * to interact with the zoomable interface. Any control can be anchored to any 
+ * A Control represents any interface element which is meant to allow the user
+ * to interact with the zoomable interface. Any control can be anchored to any
  * element.
  * @class
  * @param {Element} element - the contol element to be anchored in the container.
  * @param {OpenSeadragon.ControlAnchor} anchor - the location to anchor at.
  * @param {Element} container - the element to control will be anchored too.
- * 
- * @property {Element} element - the element providing the user interface with 
+ *
+ * @property {Element} element - the element providing the user interface with
  *  some type of control. Eg a zoom-in button
- * @property {OpenSeadragon.ControlAnchor} anchor - the position of the control 
+ * @property {OpenSeadragon.ControlAnchor} anchor - the position of the control
  *  relative to the container.
- * @property {Element} container - the element within with the control is 
+ * @property {Element} container - the element within with the control is
  *  positioned.
- * @property {Element} wrapper - a nuetral element surrounding the control 
+ * @property {Element} wrapper - a nuetral element surrounding the control
  *  element.
  */
 $.Control = function ( element, anchor, container ) {
@@ -43,14 +43,14 @@ $.Control = function ( element, anchor, container ) {
 
     if ( this.anchor == $.ControlAnchor.NONE ) {
         // IE6 fix
-        this.wrapper.style.width = this.wrapper.style.height = "100%";    
+        this.wrapper.style.width = this.wrapper.style.height = "100%";
     }
 
-    if ( this.anchor == $.ControlAnchor.TOP_RIGHT || 
+    if ( this.anchor == $.ControlAnchor.TOP_RIGHT ||
          this.anchor == $.ControlAnchor.BOTTOM_RIGHT ) {
-        this.container.insertBefore( 
-            this.wrapper, 
-            this.container.firstChild 
+        this.container.insertBefore(
+            this.wrapper,
+            this.container.firstChild
         );
     } else {
         this.container.appendChild( this.wrapper );
@@ -83,8 +83,8 @@ $.Control.prototype = {
      * @param {Boolean} visible - true to make visible, false to hide.
      */
     setVisible: function( visible ) {
-        this.wrapper.style.display = visible ? 
-            "inline-block" : 
+        this.wrapper.style.display = visible ?
+            "inline-block" :
             "none";
     },
 

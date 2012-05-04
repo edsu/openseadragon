@@ -1,7 +1,7 @@
 
 (function( $ ){
-    
-//TODO: I guess this is where the i18n needs to be reimplemented.  I'll look 
+
+//TODO: I guess this is where the i18n needs to be reimplemented.  I'll look
 //      into existing patterns for i18n in javascript but i think that mimicking
 //      pythons gettext might be a reasonable approach.
 var I18N = {
@@ -41,7 +41,7 @@ $.extend( $, {
      * @param {String} property
      */
     getString: function( prop ) {
-        
+
         var props   = prop.split('.'),
             string  = null,
             args    = arguments,
@@ -58,8 +58,8 @@ $.extend( $, {
 
         return string.replace(/\{\d+\}/g, function(capture) {
             var i = parseInt( capture.match( /\d+/ ) ) + 1;
-            return i < args.length ? 
-                args[ i ] : 
+            return i < args.length ?
+                args[ i ] :
                 "";
         });
     },

@@ -38,8 +38,8 @@ $.EventHandler.prototype = {
         //               - not actually being removed, we need to add the code
         //               - to do the removal ourselves. TODO
         var events = this.events[ eventName ];
-        if ( !events ){ 
-            return; 
+        if ( !events ){
+            return;
         }
         //End Thatcher
     },
@@ -50,15 +50,15 @@ $.EventHandler.prototype = {
      * @param {String} eventName - Name of event to get handlers for.
      */
     getHandler: function( eventName ) {
-        var events = this.events[ eventName ]; 
-        if ( !events || !events.length ){ 
-            return null; 
+        var events = this.events[ eventName ];
+        if ( !events || !events.length ){
+            return null;
         }
-        events = events.length === 1 ? 
-            [ events[ 0 ] ] : 
+        events = events.length === 1 ?
+            [ events[ 0 ] ] :
             Array.apply( null, events );
         return function( source, args ) {
-            var i, 
+            var i,
                 length = events.length;
             for ( i = 0; i < length; i++ ) {
                 if( events[ i ] ){

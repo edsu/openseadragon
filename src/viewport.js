@@ -7,7 +7,7 @@
  */
 $.Viewport = function( options ) {
 
-    //backward compatibility for positional args while prefering more 
+    //backward compatibility for positional args while prefering more
     //idiomatic javascript options object as the only argument
     var args = arguments;
     if(  args.length && args[ 0 ] instanceof $.Point ){
@@ -27,7 +27,7 @@ $.Viewport = function( options ) {
     }
 
     $.extend( true, this, {
-        
+
         //required settings
         containerSize:      null,
         contentSize:        null,
@@ -47,17 +47,17 @@ $.Viewport = function( options ) {
     }, options );
 
     this.centerSpringX = new $.Spring({
-        initial: 0, 
+        initial: 0,
         springStiffness: this.springStiffness,
         animationTime:   this.animationTime
     });
     this.centerSpringY = new $.Spring({
-        initial: 0, 
+        initial: 0,
         springStiffness: this.springStiffness,
         animationTime:   this.animationTime
     });
     this.zoomSpring    = new $.Spring({
-        initial: 1, 
+        initial: 1,
         springStiffness: this.springStiffness,
         animationTime:   this.animationTime
     });
@@ -74,10 +74,10 @@ $.Viewport.prototype = {
         this.contentSize    = contentSize;
         this.contentAspectX = this.contentSize.x / this.contentSize.y;
         this.contentAspectY = this.contentSize.y / this.contentSize.x;
-        this.homeBounds     = new $.Rect( 
-            0, 
-            0, 
-            1, 
+        this.homeBounds     = new $.Rect(
+            0,
+            0,
+            1,
             this.contentAspectY
         );
         this.fitWidthBounds = new $.Rect( 0, 0, 1, this.contentAspectX );
@@ -88,14 +88,14 @@ $.Viewport.prototype = {
      * @function
      */
     getHomeZoom: function() {
-        
-        var aspectFactor = Math.min( 
-            this.contentAspectX, 
-            this.contentAspectY 
+
+        var aspectFactor = Math.min(
+            this.contentAspectX,
+            this.contentAspectY
         ) / this.getAspectRatio();
 
-        return ( aspectFactor >= 1 ) ? 
-            1 : 
+        return ( aspectFactor >= 1 ) ?
+            1 :
             aspectFactor;
     },
 
@@ -113,9 +113,9 @@ $.Viewport.prototype = {
      * @function
      */
     getMaxZoom: function() {
-        var zoom = 
-            this.contentSize.x * 
-            this.maxZoomPixelRatio / 
+        var zoom =
+            this.contentSize.x *
+            this.maxZoomPixelRatio /
             this.containerSize.x;
         return Math.max( zoom, this.getHomeZoom() );
     },
@@ -132,7 +132,7 @@ $.Viewport.prototype = {
      */
     getContainerSize: function() {
         return new $.Point(
-            this.containerSize.x, 
+            this.containerSize.x,
             this.containerSize.y
         );
     },
@@ -146,9 +146,9 @@ $.Viewport.prototype = {
             height = width / this.getAspectRatio();
 
         return new $.Rect(
-            center.x - ( width / 2.0 ), 
+            center.x - ( width / 2.0 ),
             center.y - ( height / 2.0 ),
-            width, 
+            width,
             height
         );
     },
@@ -187,8 +187,8 @@ $.Viewport.prototype = {
         height  = width / this.getAspectRatio();
         bounds  = new $.Rect(
             centerCurrent.x - width / 2.0,
-            centerCurrent.y - height / 2.0, 
-            width, 
+            centerCurrent.y - height / 2.0,
+            width,
             height
         );
 
@@ -221,7 +221,7 @@ $.Viewport.prototype = {
     applyConstraints: function( immediately ) {
         var actualZoom = this.getZoom(),
             constrainedZoom = Math.max(
-                Math.min( actualZoom, this.getMaxZoom() ), 
+                Math.min( actualZoom, this.getMaxZoom() ),
                 this.getMinZoom()
             ),
             bounds,
@@ -288,9 +288,9 @@ $.Viewport.prototype = {
         var aspect = this.getAspectRatio(),
             center = bounds.getCenter(),
             newBounds = new $.Rect(
-                bounds.x, 
-                bounds.y, 
-                bounds.width, 
+                bounds.x,
+                bounds.y,
+                bounds.width,
                 bounds.height
             ),
             oldBounds,
@@ -317,20 +317,20 @@ $.Viewport.prototype = {
             return;
         }
 
-        referencePoint = oldBounds.getTopLeft().times( 
-            this.containerSize.x / oldBounds.width 
+        referencePoint = oldBounds.getTopLeft().times(
+            this.containerSize.x / oldBounds.width
         ).minus(
-            newBounds.getTopLeft().times( 
-                this.containerSize.x / newBounds.width 
+            newBounds.getTopLeft().times(
+                this.containerSize.x / newBounds.width
             )
         ).divide(
-            this.containerSize.x / oldBounds.width - 
+            this.containerSize.x / oldBounds.width -
             this.containerSize.x / newBounds.width
         );
 
         this.zoomTo( newZoom, referencePoint, immediately );
     },
-    
+
     /**
      * @function
      * @param {Boolean} immediately
@@ -371,8 +371,8 @@ $.Viewport.prototype = {
         var center = this.getCenter();
 
         if ( this.wrapHorizontal ) {
-            center.x = ( 
-                this.contentAspectX + ( center.x % this.contentAspectX ) 
+            center.x = (
+                this.contentAspectX + ( center.x % this.contentAspectX )
             ) % this.contentAspectX;
             this.centerSpringX.resetTo( center.x );
             this.centerSpringX.update();
@@ -430,12 +430,12 @@ $.Viewport.prototype = {
 
         if ( immediately ) {
             this.zoomSpring.resetTo( zoom );
-        } else {        
+        } else {
             this.zoomSpring.springTo( zoom );
         }
 
-        this.zoomPoint = refPoint instanceof $.Point ? 
-            refPoint : 
+        this.zoomPoint = refPoint instanceof $.Point ?
+            refPoint :
             null;
     },
 
@@ -448,7 +448,7 @@ $.Viewport.prototype = {
             widthDeltaFactor = newContainerSize.x / this.containerSize.x;
 
         this.containerSize = new $.Point(
-            newContainerSize.x, 
+            newContainerSize.x,
             newContainerSize.y
         );
 
