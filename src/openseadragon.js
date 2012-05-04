@@ -313,7 +313,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
      * @see <a href='http://www.jquery.com/'>jQuery</a>
      */
     $.type = function( obj ) {
-        return obj == null ?
+        return obj === null ?
             String( obj ) :
             class2type[ toString.call(obj) ] || "object";
     };
@@ -417,7 +417,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
 
         for ( ; i < length; i++ ) {
             // Only deal with non-null/undefined values
-            if ( ( options = arguments[ i ] ) != null ) {
+            if ( ( options = arguments[ i ] ) !== null ) {
                 // Extend the base object
                 for ( name in options ) {
                     src = target[ name ];
