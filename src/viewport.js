@@ -103,7 +103,7 @@ $.Viewport.prototype = {
      * @function
      */
     getMinZoom: function() {
-        var homeZoom = this.getHomeZoom()
+        var homeZoom = this.getHomeZoom(),
             zoom = this.minZoomImageRatio * homeZoom;
 
         return Math.min( zoom, homeZoom );
