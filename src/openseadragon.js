@@ -799,21 +799,21 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
                         window.innerWidth,
                         window.innerHeight
                     );
-                }
+                };
             } else if ( docElement.clientWidth || docElement.clientHeight ) {
                 $.getWindowSize = function(){
                     return new $.Point(
                         document.documentElement.clientWidth,
                         document.documentElement.clientHeight
                     );
-                }
+                };
             } else if ( body.clientWidth || body.clientHeight ) {
                 $.getWindowSize = function(){
                     return new $.Point(
                         document.body.clientWidth,
                         document.body.clientHeight
                     );
-                }
+                };
             } else {
                 throw new Error("Unknown window size, no known technique.");
             }
@@ -1080,7 +1080,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
                 $.cancelEvent = function( event ){
                     // W3C for preventing default
                     event.preventDefault();
-                }
+                };
             } else {
                 $.cancelEvent = function( event ){
                     event = $.getEvent( event );
@@ -1579,7 +1579,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         } else {
             return element.offsetParent;
         }
-    };
+    }
 
     /**
      * @private
@@ -1610,7 +1610,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         }
 
         return processDZIXml( doc, tilesUrl );
-    };
+    }
 
     /**
      * @private
@@ -1643,7 +1643,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         }
 
         throw new Error( $.getString( "Errors.Dzi" ) );
-    };
+    }
 
     /**
      * @private
@@ -1693,7 +1693,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
             fileFormat,
             dispRects
         );
-    };
+    }
 
     /**
      * @private
@@ -1741,7 +1741,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
             fileFormat,
             dispRects
         );
-    };
+    }
     /**
      * @private
      * @inner
@@ -1754,7 +1754,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
             message     = messageNode.firstChild.nodeValue;
 
         throw new Error(message);
-    };
+    }
 
     /**
      * Reports whether the image format is supported for tiling in this
@@ -1768,7 +1768,7 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
     function imageFormatSupported( extension ) {
         extension = extension ? extension : "";
         return !!FILEFORMATS[ extension.toLowerCase() ];
-    };
+    }
 
     /**
      * Parses an XML string into a DOM Document.
@@ -1811,6 +1811,6 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
         }
 
         return $.parseXml( string );
-    };
+    }
 
 }( OpenSeadragon ));

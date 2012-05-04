@@ -320,7 +320,7 @@
             delegate.tracking = true;
             ACTIVE[ tracker.hash ] = tracker;
         }
-    };
+    }
 
     /**
      * Stops tracking mouse events on this element.
@@ -355,7 +355,7 @@
             delegate.tracking = false;
             delete ACTIVE[ tracker.hash ];
         }
-    };
+    }
 
     /**
      * @private
@@ -363,7 +363,7 @@
      */
     function hasMouse( tracker ) {
         return THIS[ tracker.hash ].insideElement;
-    };
+    }
 
     /**
      * Begin capturing mouse events on this element.
@@ -409,7 +409,7 @@
             }
             delegate.capturing = true;
         }
-    };
+    }
 
 
     /**
@@ -456,7 +456,7 @@
             }
             delegate.capturing = false;
         }
-    };
+    }
 
 
     /**
@@ -470,7 +470,7 @@
                 handler( ACTIVE[ otherHash ], event );
             }
         }
-    };
+    }
 
 
     /**
@@ -489,7 +489,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -508,7 +508,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -528,7 +528,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -575,7 +575,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -622,7 +622,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -668,7 +668,7 @@
             // add us to the list
             CAPTURING.push( tracker );
         }
-    };
+    }
 
     /**
      * @private
@@ -698,7 +698,7 @@
         }
 
         event.preventDefault();
-    };
+    }
 
 
     /**
@@ -735,7 +735,7 @@
         if ( insideElementPress && insideElementRelease ) {
             handleMouseClick( tracker, event );
         }
-    };
+    }
 
 
     /**
@@ -757,7 +757,7 @@
             //$.console.debug("pinch end");
         }
         event.preventDefault();
-    };
+    }
 
 
     /**
@@ -794,7 +794,7 @@
         );
 
         $.stopEvent( event );
-    };
+    }
 
 
     /**
@@ -811,7 +811,7 @@
             onMouseUp( tracker, event );
         }
         releaseMouse( tracker );
-    };
+    }
 
 
     /**
@@ -822,7 +822,7 @@
         if ( tracker.clickHandler ) {
             $.cancelEvent( event );
         }
-    };
+    }
 
 
     /**
@@ -861,7 +861,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -894,7 +894,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -921,7 +921,7 @@
                 $.cancelEvent( event );
             }
         }
-    };
+    }
 
 
     /**
@@ -965,7 +965,7 @@
             }
         }
         event.preventDefault();
-    };
+    }
 
     /**
      * Only triggered once by the deepest element that initially received
@@ -983,7 +983,7 @@
         }
 
         $.stopEvent( event );
-    };
+    }
 
     /**
      * @private
@@ -991,7 +991,7 @@
      */
     function getMouseAbsolute( event ) {
         return $.getMousePosition( event );
-    };
+    }
 
     /**
     * @private
@@ -1002,7 +1002,7 @@
             offset  = $.getElementPosition( element );
 
         return mouse.minus( offset );
-    };
+    }
 
     /**
     * @private
@@ -1019,7 +1019,7 @@
             }
         }
         return elementA == elementB;
-    };
+    }
 
     /**
     * @private
@@ -1027,7 +1027,7 @@
     */
     function onGlobalMouseDown() {
         IS_BUTTON_DOWN = true;
-    };
+    }
 
     /**
     * @private
@@ -1035,7 +1035,7 @@
     */
     function onGlobalMouseUp() {
         IS_BUTTON_DOWN = false;
-    };
+    }
 
 
     (function () {

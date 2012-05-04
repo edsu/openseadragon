@@ -21,7 +21,7 @@ $.DisplayRect = function( x, y, width, height, minLevel, maxLevel ) {
 
     this.minLevel = minLevel;
     this.maxLevel = maxLevel;
-}
+};
 
 $.extend( $.DisplayRect.prototype, $.Rect.prototype );
 

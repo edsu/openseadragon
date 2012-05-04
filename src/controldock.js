@@ -179,6 +179,6 @@
         }
 
         return -1;
-    };
+    }
 
 }( OpenSeadragon ));
