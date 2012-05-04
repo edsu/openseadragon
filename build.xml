@@ -52,11 +52,11 @@
             </filterchain>
             <filelist refid="openseadragon.javascript" />
         </concat>
-
-        <copy todir='${WWW}' file='openseadragon.js' />
-        
     </target>
 
+    <target name='install' depends='build'>
+        <copy todir='${WWW}' file='openseadragon.js' />
+    </target>
     
     <target name='doc'
         depends='build'>
