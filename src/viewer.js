@@ -489,7 +489,7 @@ $.extend( $.Viewer.prototype, $.EventHandler.prototype, $.ControlDock.prototype,
             abortControlsAutoHide( this );
         } else {
             beginControlsAutoHide( this );
-        };
+        }
     },
 
 
@@ -920,7 +920,7 @@ function scheduleUpdate( viewer, updateFunc, prevUpdateTime ){
     return window.setTimeout( function(){
         updateFunc( viewer );
     }, deltaTime );
-};
+}
 
 
 //provides a sequence in the fade animation
@@ -928,7 +928,7 @@ function scheduleControlsFade( viewer ) {
     window.setTimeout( function(){
         updateControlsFade( viewer );
     }, 20);
-};
+}
 
 
 //initiates an animation to hide the controls
@@ -944,7 +944,7 @@ function beginControlsAutoHide( viewer ) {
     window.setTimeout( function(){
         scheduleControlsFade( viewer );
     }, viewer.controlsFadeDelay );
-};
+}
 
 
 //determines if fade animation is done or continues the animation
@@ -970,7 +970,7 @@ function updateControlsFade( viewer ) {
             scheduleControlsFade( viewer );
         }
     }
-};
+}
 
 
 //stop the fade animation on the controls and show them
@@ -980,7 +980,7 @@ function abortControlsAutoHide( viewer ) {
     for ( i = viewer.controls.length - 1; i >= 0; i-- ) {
         viewer.controls[ i ].setOpacity( 1.0 );
     }
-};
+}
 
 
 
@@ -989,12 +989,12 @@ function abortControlsAutoHide( viewer ) {
 ///////////////////////////////////////////////////////////////////////////////
 function onFocus(){
     abortControlsAutoHide( this );
-};
+}
 
 function onBlur(){
     beginControlsAutoHide( this );
 
-};
+}
 
 function onCanvasClick( tracker, position, quick, shift ) {
     var zoomPreClick,
@@ -1008,7 +1008,7 @@ function onCanvasClick( tracker, position, quick, shift ) {
         );
         this.viewport.applyConstraints();
     }
-};
+}
 
 function onCanvasDrag( tracker, position, delta, shift ) {
     if ( this.viewport ) {
@@ -1024,13 +1024,13 @@ function onCanvasDrag( tracker, position, delta, shift ) {
             )
         );
     }
-};
+}
 
 function onCanvasRelease( tracker, position, insideElementPress, insideElementRelease ) {
     if ( insideElementPress && this.viewport ) {
         this.viewport.applyConstraints();
     }
-};
+}
 
 function onCanvasScroll( tracker, position, scroll, shift ) {
     var factor;
@@ -1044,7 +1044,7 @@ function onCanvasScroll( tracker, position, scroll, shift ) {
     }
     //cancels event
     return false;
-};
+}
 
 function onContainerExit( tracker, position, buttonDownElement, buttonDownAny ) {
     if ( !buttonDownElement ) {
@@ -1053,7 +1053,7 @@ function onContainerExit( tracker, position, buttonDownElement, buttonDownAny ) 
             beginControlsAutoHide( this );
         }
     }
-};
+}
 
 function onContainerRelease( tracker, position, insideElementPress, insideElementRelease ) {
     if ( !insideElementRelease ) {
@@ -1062,12 +1062,12 @@ function onContainerRelease( tracker, position, insideElementPress, insideElemen
             beginControlsAutoHide( this );
         }
     }
-};
+}
 
 function onContainerEnter( tracker, position, buttonDownElement, buttonDownAny ) {
     THIS[ this.hash ].mouseInside = true;
     abortControlsAutoHide( this );
-};
+}
 
 
 ///////////////////////////////////////////////////////////////////////////////
@@ -1085,7 +1085,7 @@ function updateMulti( viewer ) {
     beginTime = +new Date();
     updateOnce( viewer );
     scheduleUpdate( viewer, arguments.callee, beginTime );
-};
+}
 
 function updateOnce( viewer ) {
 
@@ -1137,7 +1137,7 @@ function updateOnce( viewer ) {
     THIS[ viewer.hash ].animating = animated;
 
     //viewer.profiler.endUpdate();
-};
+}
 
 
 
@@ -1146,7 +1146,7 @@ function updateOnce( viewer ) {
 ///////////////////////////////////////////////////////////////////////////////
 function resolveUrl( prefix, url ) {
     return prefix ? prefix + url : url;
-};
+}
 
 
 
@@ -1155,7 +1155,7 @@ function beginZoomingIn() {
     THIS[ this.hash ].zoomFactor = this.zoomPerSecond;
     THIS[ this.hash ].zooming = true;
     scheduleZoom( this );
-};
+}
 
 
 function beginZoomingOut() {
@@ -1163,17 +1163,17 @@ function beginZoomingOut() {
     THIS[ this.hash ].zoomFactor = 1.0 / this.zoomPerSecond;
     THIS[ this.hash ].zooming = true;
     scheduleZoom( this );
-};
+}
 
 
 function endZooming() {
     THIS[ this.hash ].zooming = false;
-};
+}
 
 
 function scheduleZoom( viewer ) {
     window.setTimeout( $.delegate( viewer, doZoom ), 10 );
-};
+}
 
 
 function doZoom() {
@@ -1191,7 +1191,7 @@ function doZoom() {
         THIS[ this.hash ].lastZoomTime = currentTime;
         scheduleZoom( this );
     }
-};
+}
 
 
 function doSingleZoomIn() {
@@ -1202,7 +1202,7 @@ function doSingleZoomIn() {
         );
         this.viewport.applyConstraints();
     }
-};
+}
 
 
 function doSingleZoomOut() {
@@ -1213,20 +1213,20 @@ function doSingleZoomOut() {
         );
         this.viewport.applyConstraints();
     }
-};
+}
 
 
 function lightUp() {
     this.buttons.emulateEnter();
     this.buttons.emulateExit();
-};
+}
 
 
 function onHome() {
     if ( this.viewport ) {
         this.viewport.goHome();
     }
-};
+}
 
 
 function onFullPage() {
@@ -1239,7 +1239,7 @@ function onFullPage() {
     if ( this.viewport ) {
         this.viewport.applyConstraints();
     }
-};
+}
 
 
 function onPrevious(){
@@ -1260,7 +1260,7 @@ function onPrevious(){
 
         this.openTileSource( this.tileSources[ previous ] );
     }
-};
+}
 
 
 function onNext(){
@@ -1281,7 +1281,7 @@ function onNext(){
 
         this.openTileSource( this.tileSources[ next ] );
     }
-};
+}
 
 
 }( OpenSeadragon ));
