@@ -566,8 +566,9 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
          */
         delegate: function( object, method ) {
             return function() {
-                if ( arguments === undefined )
+                if ( arguments === undefined ) {
                     arguments = [];
+                }
                 return method.apply( object, arguments );
             };
         },
@@ -794,21 +795,21 @@ OpenSeadragon = window.OpenSeadragon || function( options ){
                 body    = document.body || {};
 
             if ( typeof( window.innerWidth ) == 'number' ) {
-                $.getWindowSize = function(){
+                $.getWindowSize = function() {
                     return new $.Point(
                         window.innerWidth,
                         window.innerHeight
                     );
                 };
             } else if ( docElement.clientWidth || docElement.clientHeight ) {
-                $.getWindowSize = function(){
+                $.getWindowSize = function() {
                     return new $.Point(
                         document.documentElement.clientWidth,
                         document.documentElement.clientHeight
                     );
                 };
             } else if ( body.clientWidth || body.clientHeight ) {
-                $.getWindowSize = function(){
+                $.getWindowSize = function() {
                     return new $.Point(
                         document.body.clientWidth,
                         document.body.clientHeight
